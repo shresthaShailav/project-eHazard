@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+<script typ="text/javascript" src="validation.js" ></script>
+<style type="text/css">
+	body{
+		background-color: black;
+		color: white;
+	}
+	table{
+		margin-top: 60px;
+	}
+	h1{
+		margin-top: 60px;
+	}
+</style>
+</head>
+<body>
+	<center><h1>Registration Form</h1>
+	<form name="form1"  method="post" action="">
+	<table border='0'>
+      <tr>
+        <td><LABEL for="gender">User Profile Type:<sup style="color:#F00">*</sup> </LABEL></td> <td><INPUT type="radio" name="gender" value="Male"> CUSTOMER
+        <INPUT type="radio" name="gender" value="Female">CORPORATION TYPE
+      </td>
+    </tr>
+ 		<tr>
+			<td><LABEL for="firstname">First Name:<sup style="color:#F00">*</sup> </LABEL></td>
+         	<td><INPUT type="text" id="firstname"></td>
+ 		</tr>
+ 		<tr>
+  			<td><LABEL for="lastname">Last Name:<sup style="color:#F00">*</sup> </LABEL></td>
+  			<td><INPUT type="text" id="lastname"></td>
+ 		</tr>
+ 		<tr>
+ 			<td><LABEL for="user-name">User-Name:<sup style="color: #F00">*</sup></LABEL></td>
+ 			<td><input type="text" name="user-name"></td>
+ 		</tr>
+ 		<tr>
+   			<td><LABEL for="gender">Gender:<sup style="color:#F00">*</sup> </LABEL></td> <td><INPUT type="radio" name="gender" value="Male"> Male
+   			<INPUT type="radio" name="gender" value="Female"> Female 
+			</td>
+ 		</tr>
+ 		<tr>
+  			<td><LABEL for="dob">Date of Birth:<sup style="color:#F00">*</sup> </LABEL></td>
+  			<td><select id="dd">
+        	<option value="dd">DD</option>
+        	<script type="text/javascript">
+   				for(var i=1;i<32;i++)
+    				document.write("<option value='"+i+"'>" + i+"</option> ");
+   			</script>
+        </select>
+         </select>
+         <select id="mmm">
+         	<option value="mmm">MMM</option>
+	        <option value="0">JAN</option>
+         	<option value="1">FEB</option>
+         	<option value="2">MAR </option>
+         	<option value="3">APR</option>
+         	<option value="4">MAY</option>
+         	<option value="5">JUN</option>
+         	<option value="6">JUL</option>
+         	<option value="7">AUG</option>
+         	<option value="8">SEP</option>
+         	<option value="9">OCT</option>
+         	<option value="10">NOV</option>
+         	<option value="11">DEC</option>
+        </select>
+        <select id="yyyy">
+           <option value="yyyy"selected>YYYY</option>
+        <script type="text/javascript">
+   				var dt= new Date();
+   				for(var i=1979;i<=dt.getFullYear();i++)
+    			document.write("<option value='"+i+"'>" + i+"</option> ");
+  		</script>
+  		</select>
+  	</td>
+ </tr>
+ <tr>
+	<td><LABEL for="address" style="text-align:left;">Address:<sup style="color:#F00">*</sup> </LABEL></td>
+  	<td><textarea id="address"  name="address" rows="4" cols="20"></textarea></td>
+ </tr>
+ <tr>
+  <td><LABEL for="contctno">Contact Number:<sup style="color:#F00">*</sup> </LABEL></td>
+  <td><INPUT type="text" id="contctno"></td>
+ </tr>
+ <tr>
+  <td><LABEL for="email">Email:<sup style="color:red;">*</sup> </LABEL></td>
+  <td><INPUT type="text" id="email"></td>
+ </tr>
+ <tr>
+  <td></td><td><br/><INPUT type="submit" onClick="return validateForm()" value="Submit">
+  <INPUT type="reset" onClick="return confirmreset()"></td>
+ </tr>
+ <tr>
+  <td></td><td style="font-size:12px;text-align:right;"><br/><i style="color:red;font-size:12px;align:right;" >* - Mandatory</i></td>
+ </tr>
+    </table>
+ </FORM></center>
+ </body>
+</html>
