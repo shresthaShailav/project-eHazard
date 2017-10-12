@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Contact Us!
+{% endblock %}
+
+{% block main %}
+
+{% if session.user_category == 3 %}
+<p>  will extend seller index</p>
+
+{% elif session.user_category == 5 %}
+<p>  will extend buyer index</p>
+
+{% else %}
+<p> will extend the guest index </p>
+
+{% endif %}
+
+This is the Contact page will be implemented soon. See ya
+
+{% endblock %}

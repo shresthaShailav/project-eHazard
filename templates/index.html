@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block title %}
+Guest Home
+{% endblock %}
+
+{% block navbar_modification %}
+
+<ul class="navbar-nav mr-auto">
+</ul>
+
+<ul class="navbar-nav mr-auto">
+	<li class="nav-item active">
+		<a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Explore!</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Explore Again!</a>
+	</li>
+</ul>
+
+<ul class="navbar-nav mr-auto">
+</ul>
+<ul class="navbar-nav ml-auto">
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			More
+		</a>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+			<a class="dropdown-item" href="{{ url_for('about') }}">About</a>
+			<a class="dropdown-item" href="{{ url_for('contact') }}">Contact Us!</a>
+		</div>
+	</li>
+</ul>
+{% endblock %}
+
+{% block extra %}
+
+<ul class="navbar-nav ml-auto">
+	<li class="nav-item active">
+		<a class="nav-link" href="{% block headerlink1 %}{% endblock %}"><b>Register!</b></a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{% block headerlink2 %}{% endblock %}"><b>Log In!</b></a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{% block headerlink3 %}{% endblock %}"><b>{% block header3 %}{% endblock %}</b></a>
+	</li>
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			More
+		</a>
+		<div clas="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			<a class="dropdown-item" href="#">ACTION1</a>
+
+			<a class="dropdown-item" href="#">ACTION1</a>
+
+			<a class="dropdown-item" href="#">ACTION1</a>
+		</div>
+	</li>
+</ul>
+
+{% endblock %}

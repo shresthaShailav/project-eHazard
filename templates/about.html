@@ -1,0 +1,32 @@
+
+{% if session.user_category == 3 %}
+{% extends "seller_index.html" %}
+
+{% elif session.user_category == 5 %}
+{% extends "buyer_index.html" %}
+
+{% else %}
+{% extends "guest_index.html" %}
+
+{% endif %}
+
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block main %}
+
+{% if session.user_category == 3 %}
+<p>  will extend seller index</p>
+
+{% elif session.user_category == 5 %}
+<p>  will extend buyer index</p>
+
+{% else %}
+<p> will extend the guest index </p>
+
+{% endif %}
+This is the About page will be implemented soon. See ya
+{% endblock %}
+
