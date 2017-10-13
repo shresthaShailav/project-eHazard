@@ -1,0 +1,14 @@
+installed pip-management (sudo apt-get python-pip)
+installed virtualenv (sudo pip install virtualenv)
+set up an exclusive environment
+installed flask (pip install flask)
+installed sqlite3 (sudo apt-get install sqlite3)
+installed phpliteadmin (sudo apt-get install php7.0-sqlite3)
+installed Flask-SQLAlchemy (pip install Flask-SQLAlchemy)
+created a layout page and copied  to the project directory
+installed flask-session and passlib module with pip
+got bootstrap4 for front end
+
+installed python-pip3 (sudo apt install python3-pip
+reinstalled all the dependencies above
+Added a cs50 sqlalchemy wrapper (pip install cs500
