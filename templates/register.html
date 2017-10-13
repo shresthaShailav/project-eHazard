@@ -1,0 +1,106 @@
+{% extends "guest_index.html" %}
+
+{% block title %}
+Welcome! be a part of us!
+{% endblock %}
+
+{% block main %}
+<div class="container">
+	<form action="{{ url_for('register') }}" method="post">
+
+		<div class="row">
+			<legend class="col-form-legend col-sm-2">Register As:</legend>
+			<div class="col-sm-10">
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="userType" id="sellerRadio" value="seller" checked>
+						Seller&nbsp;&nbsp;&emsp;&emsp;
+					</label>	
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="userType" id="buyerRadio" value="buyer">
+						Buyer&nbsp;&nbsp;
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<input type="email" class="form-control" autofocus name="email" placeholder="Email Id" required>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" autofocus name="username" placeholder="Username" autocomplete="off" required />
+			</div>
+
+			<div class="form-group col-md-4">
+				<input type="password" class="form-control" autofocus name="password" placeholder="Password" autocomplete="off"required />
+			</div>
+
+			<div class="form-group col-md-4">
+				<input type="password" class="form-control" autofocus name="password_again" placeholder="Password Again" autocomplete="off" required/>
+			</div>
+		</div>
+
+
+		<div class="row">
+
+			<div class="form-group col-sm-4">
+				<input type="text" class="form-control" autofocus name="firstname" placeholder="First Name" autocomplete="off" required />
+			</div>
+
+			<div class="form-group col-sm-4">
+				<input type="text" class="form-control" autofocus name="midname" placeholder="Middle Name" autocomplete="off" />
+			</div>
+
+			<div class="form-group col-sm-4">
+				<input type="text" class="form-control" autofocus name="lastname" placeholder="Last Name" autocomplete="off" required/>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<legend class="col-form-legend col-sm-2">Gender : </legend>
+			<div class="col-sm-10">
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="userGender" id="sellerRadio" value="M" checked>
+						Male&nbsp;&nbsp;&emsp;&emsp;
+					</label>	
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="userGender" id="buyerRadio" value="F">
+						Female&nbsp;&nbsp;&emsp;&emsp;
+					</label>
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="userGender" id="buyerRadio" value="O">
+						Others&nbsp;&nbsp;
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<input type="text" class="form-control" autofocus name="userDOB" placeholder="Date of Birth "/>
+		</div>
+
+
+
+		<div class="form-group">
+			<textarea class="form-control" id="address" name="userAddress" rows="2" placeholder="Address"></textarea>
+		</div>
+
+		<div class="form-group">
+			<input type="text" class="form-control" autofocus name="contact" placeholder="Contact number" required />
+		</div>
+		<button type="submit" class="btn btn-primary">Register!</button>
+	</form>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+

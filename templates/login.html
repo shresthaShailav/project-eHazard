@@ -1,0 +1,52 @@
+{% extends "guest_index.html" %}
+
+{% block title %}
+Welcome! Lets Log you in!
+{% endblock %}
+
+{% block main %}
+<div class="container">
+	<form action="{{ url_for('login') }}" method="post">
+		<div class="row">
+			<div class="form-group col-sm-4">
+			</div>
+			<div class="form-group col-sm-4">
+				<input type="type" class="form-control" id="inputUsername" name=username aria-describedby="emailHelp" placeholder="Username" required>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm-4">
+			</div>
+			<div class="form-group col-sm-4">
+
+				<input type="password" class="form-control" id="inputPassword" name=password placeholder="Password" required>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-4">
+			</div>
+			<div class="form-check col-sm-4">
+				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name=userType id="sellerRadio" value="seller" checked>
+					Seller&nbsp;&nbsp;
+				</label>
+
+				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name=userType id="buyerRadio" value="buyer">
+					Buyer
+				</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm-4">
+			</div>
+			<div class="form-group col-sm-4">
+				<button type="submit" class="btn btn-primary">Get In!</button>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}
+

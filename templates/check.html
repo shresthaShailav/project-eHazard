@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+checking
+{% endblock %}
+
+{% block main %}
+
+{% for i in tables %}
+<p> Table {{i}} exists </p>
+{% endfor %}
+{% endblock %}
