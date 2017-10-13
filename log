@@ -11,4 +11,4 @@ got bootstrap4 for front end
 
 installed python-pip3 (sudo apt install python3-pip
 reinstalled all the dependencies above
-Added a cs50 sqlalchemy wrapper (pip install cs500
+Added a cs50 sqlalchemy wrapper (pip install cs50)
