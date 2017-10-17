@@ -1,5 +1,5 @@
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import Flask, jsonify, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.context import CryptContext
 from tempfile import mkdtemp
@@ -221,6 +221,116 @@ def about():
         Will probably have to be implemented with Jinja at the front 
     """
     return render_template("about.html")
+
+
+
+@app.route('/post', methods=["GET", "POST"])
+@login_required
+def post():
+    """ !!!
+        item posted by the user """
+    
+    if request.method == "POST":
+
+        # ensure that the required values are entered
+        if not request.form.get("itemcategory"):
+            return error("Sorry!", "Enter item category")
+        if not request.form.get("recyclable"):
+            return error("Sorry!", "select either of recyclabe or not recyclable")
+        if not request.form.get("itemname"):
+            return error("Sorry!", "Enter the item name")
+
+        if not request.form.get("itemprice"):
+            return error("Sorry!", "Item price not set")
+        if not request.form.get("itemusage"):
+            return error("Sorry!", "Item usage period left empty")
+
+
+        # add to the database
+        db.execute('INSERT INTO "repository" ("item_id","item_name","item_description","user_id","item_category","usage_period","price","recyclable") VALUES (NULL, :item_name, :item_description, :user_id, :category, :usage, :price, :recyclability)',
+                item_name = request.form.get("itemname"),
+                item_description = request.form.get("itemDescription"),
+                user_id = session["user_id"],
+                category = request.form.get("itemcategory"),
+                usage = request.form.get("itemusage"),
+                price = request.form.get("itemprice"),
+                recyclability = request.form.get("recyclable"))
+
+        flash("Congratulation! Your item is posted")
+        return redirect(url_for('index'))
+
+        # INSERT INTO "repository" ("item_id","item_name","item_description","user_id","item_category","usage_period","price","recyclable") 
+        # VALUES (NULL, :item_name, :item_description, :user_id, :category, :usage, :price, :recyclablity)
+
+    else :
+        return render_template("post.html")
+
+
+@app.route('/my_posts')
+@login_required
+def my_posts():
+    """ !!! """
+    posts = db.execute("SELECT * FROM repository WHERE user_id = :userID", userID = session["user_id"])
+    #return jsonify(posts)
+    return render_template("my_posts.html", posts = posts)
+
+
+
+
+@app.route('/search', methods=["GET", "POST"])
+def search():
+    """ !!! """
+    if request.method == 'POST':
+       # # ensure that the entered variables are valid
+       # if not request.form.get("itemcategory"):
+       #     return error("Item category not selected")
+       # 
+       # if (request.for.get("recyclability") == "true"):
+       #     results = db.execute('SELECT * FROM repository WHERE item_category = :category AND recyclable = "true"', category = request.form.get("itemcategory"))
+       # else :
+       #     results = db.execute('SELECT * FROM repository WHERE item_category = :category AND recyclable = "false"', category = request.form.get("itemcategory"))
+       # 
+        # Query with category and possible price if available
+        pricehigh = request.form.get("pricehigh")
+        pricelow = request.form.get("pricelow")
+        item_category = request.form.get("itemcategory")
+
+        if pricehigh and pricelow:
+            results = db.execute('SELECT * FROM repository WHERE item_category = :category AND (price <= :high AND price >= :low)',
+                    category = item_category,
+                    high = pricehigh,
+                    low = pricelow)
+
+        elif pricehigh and not pricelow:
+            results = db.execute('SELECT * FROM repository WHERE item_category = :category AND price <= :high',
+                    category = item_category,
+                    high = pricehigh)
+
+        elif pricelow and not pricehigh:
+            results = db.execute('SELECT * FROM repository WHERE item_category = :category AND price >= :low',
+                    category = item_category,
+                    low = pricelow)
+
+        else:
+            results = db.execute('SELECT * FROM repository WHERE item_category = :category', category = item_category)
+        
+
+        final_list = list()
+        # filter for recyclability
+        # note that the user can query particularly recyclabe items. If unselected, simply all the results will be displayed
+        if request.form.get("recyclable"):
+            print("reached")
+            for result in results:
+                if result.get("recyclable") == "true" :
+                    final_list.append(result)
+        else :
+            final_list = results
+        
+        return jsonify(final_list)
+    else :
+        return render_template('search.html')
+ 
+
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

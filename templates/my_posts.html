@@ -1,0 +1,39 @@
+{% extends "seller_index.html" %}
+{% block title %}
+My Posts
+{% endblock %}
+
+{% block main %}
+<div class="container">
+<table class="table">
+	<head>
+		<tr>
+			<th>#</th>
+			<th>Item Name</th>
+			<th>Item Category</th>
+			<th>Item Description </th>
+			<th>Price</th>
+			<th>Date-added</th>
+			<th>Time-added</th>
+			<th>Usage Period</th>
+			<th>Recyclable?</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for post in posts %}
+		<tr>
+			<th scope="row">{{ post["item_id"] }}</th>
+			<td>{{ post["item_name"] }}</td>
+			<td>{{ post["item_category"] }}</td>
+			<td>{{ post["item_description"] }}</td>
+			<td>{{ post["price"] }}</td>
+			<td>{{ post["date_added"] }}</td>
+			<td>{{ post["time_added"] }}</td>
+			<td>{{ post["usage_period"] }}</td>
+			<td>{{ post["recyclable"] }} </td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+{% endblock %}

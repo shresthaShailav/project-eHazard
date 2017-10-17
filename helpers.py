@@ -1,6 +1,6 @@
 import csv
 
-from flask import redirect, render_template, request, session, url_for
+from flask import flash, redirect, render_template, request, session, url_for
 from functools import wraps
 
 # a custom decorator for ensuring that the user is logged in

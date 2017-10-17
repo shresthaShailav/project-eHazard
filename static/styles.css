@@ -1,0 +1,13 @@
+body {
+	background-image: url("background.jpg");
+}
+
+#brand {
+	align-content:  flex-start;
+	background-color : #FF0000;
+}
+
+.navbar-custom{
+	background-color: #2f4f4f;
+}
+

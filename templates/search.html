@@ -1,0 +1,64 @@
+
+{% if session.user_category == 1 %}
+{% extends "seller_index.html" %}
+
+{% elif session.user_category == 2 %}
+{% extends "buyer_index.html" %}
+
+{% else %}
+{% extends "guest_index.html" %}
+
+{% endif %}
+
+
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block main %}
+<div class="container">
+	<form action="{{ url_for('search') }}" method="post">
+
+		<div class="form-group">
+			<label for="itemcategory">Select Category</label>
+			<select multiple class="form-control col-sm-6" id="categorySelect" name="itemcategory">
+				<option value="A" selected="selected"> A </option>
+				<option value="B"> B </option>
+				<option value="C"> C </option>
+				<option value="D"> D </option>
+				<option value="E"> E </option>
+			</select>
+		</div>
+		<div class="row">
+			<div class="form-check col-sm-6">
+				<label class="form-check-label">
+					<input class="form-check-input" type="radio" name="recyclable" id="yesRecyclable" value="true">
+					&nbsp;&emsp;&emsp;Recyclable&nbsp;
+				</label>	
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm-3">
+				<input type="number" class="form-control" autofocus name="pricelow" placeholder="Price low" autocomplete="off"/>
+			</div>
+
+			<div class="form-group col-sm-3">
+				<input type="number" class="form-control" autofocus name="pricehigh" placeholder="Price high" autocomplete="off"/>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="form-group col-sm-6">
+				<input type="text" class="form-control" autofocus name="keyword" placeholder="Used period (in years)" autocomplete="off" />
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Search</button>
+	</form>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,43 @@
+Layout.html
+	This is the base that is common throughout the entire webpage.
+	Think of it as inheritance. Every page inherits this layout. The new pages will only be able to add to this layout
+	All the links to j_query and css_files are made in this file
+
+Register.html
+	This page handles the input required for registering the user into the database
+	Note that this page is only accessible if the user is not logged in (because duh!)
+	Does the error checking and directly modifies the database
+
+Login.html
+	This page is the only page which can log the user into the site.
+	Does the error cheking, and only queries the database
+	The guest has the option to login as a seller of a buyer (radio button)
+
+
+seller_layout.html
+	This is the base page for all the seller
+	Every page that is availabe to the seller inherits this layout.
+	Note that this layout inherits Layout.html
+
+buyer_layout.html
+	This is the base page for the buyer
+	Every page that is available to the buyer inherits this layout.
+	Note that his layout inherits Layout.html
+
+guest_index.html
+	This is the default page that is loaded upon loading the site
+	The user has the option to browse for items, login or register
+
+seller_index.html
+	The homepage for the seller.
+	The user has the option to post items to sell, logout, 
+
+buyer_index.html
+	The homepage for the buyer
+	The buyer has the option to search for the 
+	Recent updates are posted on the index 
+
+search.html
+	Available 
+	
+

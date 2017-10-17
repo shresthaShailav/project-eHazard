@@ -1,0 +1,83 @@
+DATABASE OUTLINE
+
+
+Those marked with * are essential information. The others are optional of smoother experience
+Those marked with (P) are primary key that uniquely identifies the content
+Those marked with (i) are indexed columns for faster searching
+Those marked with (f) are foreign keys 
+Those marked with (u) are unique values
+
+User_id is assigned by the backend itself. The user does not have the option to modify the user_id
+Item_id is assigned by the backend itself. The user does not have the option to modify the item_id
+
+/* A cumulative user information */
+/* a user credential entry will be created first and user_id will be determined in that table. This table simply copies that user_id. */
+User info:
+(P)(u)	*User_id 	:               (integer) a unique number that identifies the user throughout the database 
+	*First name	: 		(text)    first name of the user
+	Middle name 	: 		(text)    middle name of the user
+	*Last name 	: 		(text)    last name of the user
+	*Gender		:		(text)    Enumeration :  Male | Female | Others (M | F| O)
+	DOB		:		(date)    Optionally user can add their dob
+(i)(u)	*Email		:		(text)    a unique email_id to contact the user
+	Address 	:		(text)    the residence address of the user. (Note : the user will also have the option to activate hotmap feature)
+(u)	*Contact no	:		(text)    a unique contact number of the user
+	link		:		(integer) just in case we have to link the table in unknown ways. Think of it as a pseudo foreign key
+	(NOTE if the table does not suffice, we will create another table named user_info2 which can store rest of the information)
+
+
+
+
+/* Information for login and logout */
+User credentials:
+(P)(u)	*User_id	:		(integer) a unique number that identifies the user through out the database
+(i)(u)	*Username	:	      	(text)    a unique username that identifies the user throughout the database
+	*Password hash	:	        (text)    a hash of the password that is used to log the user in. When the user enters their password, its hash should match this to log in
+	Hint		:		(text)    a hint for the password
+(i)	*User_category	:		(integer) Enumeration : Buyer | Seller (Sellers are 1) (Buyers are 2) 
+
+
+
+
+/* Information about the users that are used for our reference.The user cannot modify these values */
+/* Note that this table is unstable. Lots to add here */
+User History :
+	*Date Added 	:		(date)	  the date when the user joined (assigned by the system, user cannot modify these)
+	*Time Added	:		(time)    the time when the user joined (assigned by the system, user cannot modify these)
+	Trust_points 	:		(integer) an assigned value based on the performance of the user
+
+
+
+
+/* Repository information : all the items posted will be handled by this table	*/
+/* Can be modified and viewed by the seller */
+/* Can only be viewed by the buyer */
+Repository :
+(P)(u)	*Item_id	:		(integer)  a unique item identifier used to access the item
+(i)	*Item_name	:		(text)     the name of the item
+	Item_description:		(text)     a short description of the item 
+(f)(i)	*User_id	:		(integer)  the user_id of the seller (assigned by the data_base itself)
+(i)	*Item Category	:		(text)     Enumeration : Indefinite number of enumerations . (for now just A B C D)
+	Usage_period	:		(real)     An estimate of the number of years that the item has been used for
+	*Price		: 		(real)     The price estimate that the user is willing to sell it for
+	*Recyclable?	:		(text)     A value that is set to "true" of the item is recyclable, else "false"
+(i)	*Date_added 	:		(date)     The date at which this item was posted
+	*Time_added	:		(time)     The time at which this item was posted
+	(Note that this table does not account for images that the items might hold.
+	(Images option can be later added by creating another table and linking the Item_id to that table. Hence we will be able to access and modify the images as long as we have the Item_id)
+
+/* Information about the items that are used for our reference. The user cannot modify these values */
+/* Unstable table : Lots to add here as well */
+Item history :
+	*No of views	:
+	*Popularity	:
+
+
+
+
+/* The latitude and longitude of the location of the user. This is an optional table for the hotmap feature */
+location_map
+	*User_id	:		a unique number to identify the user throughout the system. (Note that an item will not be pinned, only the location of the seller will be pinned
+	*Latitude	:
+	*Longitude	:
+
