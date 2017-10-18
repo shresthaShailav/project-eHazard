@@ -41,8 +41,9 @@ db = SQL("sqlite:///data.db")
 @app.route("/")
 def index():
     """ !!! 
-        loads the guest index with the option to login if the user is not logged in, Register, or view the about and contact page
-        If the user is already logged in then it displays the respective index pages for the user
+        This is the first page that is loaded on loading the site.
+        It shows the different things to display in the dashboard as per the user type
+        For now simply displays the guest index, seller_index or buyer_index as per the type of the user logged in
     """
     if session.get("user_id"):
         if session["user_category"] == 1:
@@ -54,26 +55,27 @@ def index():
 
 @app.route("/check")
 def check():
+    """  !!!
+    Just for checking purposes, will remove later
+    """
     tables = db.engine.execute('SELECT name FROM sqlite_master WHERE type = "table";')
     print(tables)
     session['user_category'] = 3
     return render_template("check.html", tables=tables)
 
-@app.route("/error_code")
-def error_code():
-    return error("AN example", "of error",
-            error_info="THis is an error")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """ !!! """
     """ Logs the user into the system 
-        If logged in as a buyer, loads the buyer index
-        If logged in as a seller loads the seller index
-        Else shows error"""
+        And loads the respective index
+        if a logged in user goes to this page, the user will have to log in again
+    """
     session.clear()
 
     if request.method == "POST":
+
         # ensure required values are filled
         if not request.form.get("username"):
             return error("Sorry!", "No username entered")
@@ -82,6 +84,7 @@ def login():
         if not request.form.get("userType"):
             return error("Sorry!", "No accounttype selected")
 
+        # set things up
         if request.form.get("userType") == 'seller':
             account_type = 1
         elif request.form.get("userType") == 'buyer':
@@ -89,18 +92,15 @@ def login():
         else:
             account_type = 0
 
-
         # query the database for matching account
-
         hasher = CryptContext(schemes=["sha256_crypt", "md5_crypt", "des_crypt"])
         result = db.execute('SELECT * FROM user_credentials WHERE username = :username AND user_category = :category',
                 username = request.form.get("username"),
                 category = account_type)
 
-        print(result)
-        print(request.form.get("password"))
         if len(result) != 1 or not hasher.verify(request.form.get("password"), result[0]["password_hash"]):
             flash("Invalid Username and/or password")
+            return render_template('login.html')
             return error("Invalid username or password")
 
         # add the user to the session
@@ -119,10 +119,13 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """ !!! """
-    """ Registers the user by adding their credentials into the database """
+    """ Registers the user by adding their credentials into the database
+        Only register the user. Does not log the user in
+    """
     if request.method == "POST":
 
         # handle all the required cases (frontend should handle it but just in case)
@@ -225,7 +228,7 @@ def about():
 
 
 @app.route('/post', methods=["GET", "POST"])
-@login_required
+@login_required_as_seller
 def post():
     """ !!!
         item posted by the user """
@@ -267,7 +270,7 @@ def post():
 
 
 @app.route('/my_posts')
-@login_required
+@login_required_as_seller
 def my_posts():
     """ !!! """
     posts = db.execute("SELECT * FROM repository WHERE user_id = :userID", userID = session["user_id"])
@@ -281,15 +284,6 @@ def my_posts():
 def search():
     """ !!! """
     if request.method == 'POST':
-       # # ensure that the entered variables are valid
-       # if not request.form.get("itemcategory"):
-       #     return error("Item category not selected")
-       # 
-       # if (request.for.get("recyclability") == "true"):
-       #     results = db.execute('SELECT * FROM repository WHERE item_category = :category AND recyclable = "true"', category = request.form.get("itemcategory"))
-       # else :
-       #     results = db.execute('SELECT * FROM repository WHERE item_category = :category AND recyclable = "false"', category = request.form.get("itemcategory"))
-       # 
         # Query with category and possible price if available
         pricehigh = request.form.get("pricehigh")
         pricelow = request.form.get("pricelow")
@@ -331,6 +325,10 @@ def search():
         return render_template('search.html')
  
 
+@app.route('/item', methods=["GET"])
+def item():
+    """ returns a json object with all the detailed information about  the item and the user selling it"""
+    return error("Working on it")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

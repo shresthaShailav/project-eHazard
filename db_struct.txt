@@ -47,6 +47,23 @@ User History :
 	Trust_points 	:		(integer) an assigned value based on the performance of the user
 
 
+/* The Notification preferences of the buyer is stored in this table */
+/* Note that all the filters are optional The user can simply set filters and the items that satisfy his criteria will be displayed */
+Notification_choice :
+	user_id		: 		(integer) The primary key to identify the user
+	Price_high	:		(real) The maximum price that the buyer wishes to parameterize
+	Price_low	:               (real) The minimum price that the buyer wishes to parameterize	 
+	Distance	:		(real) The maximum distace that the buyer is willing to travel in kilometers
+	keywords	:		(text) The user can set keywords that are separated by comma to notify them is any keyword matches
+	category	:		(text) Comma separated category list that the user can set. Only those categories will be notified about
+	Usage_period	: 		(real) The maximum product age. Anything less than that age will be notified about
+	
+
+/* A table to hold the information about the buyer requests */
+/* If the buyer finds the product of interest, he will have the option to see the user profile of the seller */
+/* However, if the user has not provided certain informaion, the buyer has the option to notify the seller that he is interested in the product */
+/* Then the seller will be notified 
+	
 
 
 /* Repository information : all the items posted will be handled by this table	*/
@@ -68,9 +85,10 @@ Repository :
 
 /* Information about the items that are used for our reference. The user cannot modify these values */
 /* Unstable table : Lots to add here as well */
-Item history :
+Item_characteristics :
 	*No of views	:
 	*Popularity	:
+	*Hazard Points  :
 
 
 

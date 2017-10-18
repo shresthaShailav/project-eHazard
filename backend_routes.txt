@@ -1,0 +1,71 @@
+Documentations of all the routes and what they return under various cases
+
+
+'index':
+	GET  -> Returns the index page of the user
+			The index page varies with the user_category provided by session.
+
+
+'register' :
+	GET  -> Returns the registration page through which the guest can register
+	POST -> Validates all the inputs that the user provides and then registers the user
+
+			Inputs :
+				userType
+				email
+				username
+				password
+				password_again
+				firstname
+				lastname
+				userGender
+				contact
+
+				midname
+				userDOB
+			
+			On success, the data provided by the user is inserted into two tables user_credentials and user_info.
+			The password is not directly stored but stored as a hasg with the passlib module
+
+
+'login' :
+	GET  -> Returns the login page of the user. (Page reference : login.html)
+	POST -> Validates that all the inputs are provided and if valid checks the input with user_credentials table and logs the user in.
+	
+			Inputs :
+				Username
+				Password
+
+			On success, three key value pairs are added to the session
+			1. user_id : This number uniquely identifies the user throughout the database. Any interaction with the database exclusive to the user will require this id
+			2. user_category : This number identifies the user as a seller(1) or a buyer(2). All the pages will check for this value and display the page as per this value
+			3. user_name : This is the unique username that identifies the user. Especially useful for creating a personal experience by displaying the users name
+
+
+'logout' :
+	GET  -> Simply clears out the session essentially logging the user out of the system
+
+
+'post' 	:
+	GET  -> Returns a page that allows only the user to post items into the repository (Note that only the seller is able to access this page
+	POST -> Validates that all the post contents are provided and adds the item into the repository table
+			Inputs : 
+				itemcategory
+				recyclable
+				itemname
+				itemprice
+				itemusage
+
+
+
+'my_posts' :
+	GET  -> Returns a page with a list of all the items that the user has posted. Note that this page is accessible only to the seller account. Others can't access this page
+				
+'about' :
+	GET  -> Inherits the required index page (as per the session('user_category') and displays the about contents
+
+
+'contact' :
+	GET  -> Inherits the required index page (as per the session('user_category') and displays the contact us contents
+
+
