@@ -3,6 +3,7 @@
 Buyer Home
 {% endblock %}
 
+# modify he navbar as per the requirements of the buyer account
 {% block navbar_modification %}
 
 <ul class="navbar-nav mr-auto">
@@ -39,4 +40,27 @@ Buyer Home
 		</div>
 	</li>
 </ul>
+{% endblock %}
+
+# the main content of the index of the buyer page is to be written here
+{% block main %}
+
+
+<div class="jumbotron jumbotron-fluid jumbotron-custom">
+	<div class="container-fluid">
+		<h1 class="display-3">
+			{% if get_flashed_messages() %}
+			<header>
+				<div role="alert">
+					{{ get_flashed_messages() | join(" ") }}
+				</div>
+			</header>
+			{% else %}
+			A bit cleaner, A bit Greener
+			{% endif %}
+		</h1>
+		<p class="lead text-secondary" style="vertical-align:bottom;">Let's make sure we make the environment cleabner</p>
+	</div>
+
+</div>
 {% endblock %}

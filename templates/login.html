@@ -6,6 +6,13 @@ Welcome! Lets Log you in!
 
 {% block main %}
 <div class="container">
+	{% if get_flashed_messages() %}
+	<header>
+	<div class="alert alert-info" role="alert">
+		{{ get_flashed_messages() | join(" ") }}
+	</div>
+	</header>
+	{% endif %}
 	<form action="{{ url_for('login') }}" method="post">
 		<div class="row">
 			<div class="form-group col-sm-4">

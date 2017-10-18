@@ -3,11 +3,11 @@
 Seller Home
 {% endblock %}
 
+# Modify the navbar as per the requirements of the seller account
 {% block navbar_modification %}
-
 <ul class="navbar-nav mr-auto">
-</ul>
 
+</ul>
 <ul class="navbar-nav mr-auto">
 	<li class="nav-item">
 		<a class="nav-link" href="{{ url_for('index') }}">Home<span class="sr-only">(current)</span></a>
@@ -39,4 +39,26 @@ Seller Home
 		</div>
 	</li>
 </ul>
+{% endblock %}
+
+# the main content of the index of the seller page is to be written here
+{% block main %}
+
+<div class="jumbotron jumbotron-fluid jumbotron-custom">
+	<div class="container-fluid">
+		<h1 class="display-3">
+				{% if get_flashed_messages() %}
+				<header>
+					<div role="alert">
+						{{ get_flashed_messages() | join(" ") }}
+					</div>
+				</header>
+				{% else %}
+				A bit cleaner, A bit Greener
+				{% endif %}
+		</h1>
+		<p class="lead text-secondary" style="vertical-align:bottom;">Reach out to the people who can manage your waste better</p>
+	</div>
+
+</div>
 {% endblock %}
