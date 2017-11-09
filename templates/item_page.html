@@ -1,0 +1,73 @@
+{% extends "seller_index.html" %}
+{% block title %}
+My Posts
+{% endblock %}
+
+{% block main %}
+<div class="container">
+
+<table class="table table-inverse">
+	<head>
+		<tr>
+			<th>#</th>
+			<th>Item Name</th>
+			<th>Item Category</th>
+			<th>Item Description </th>
+			<th>Price</th>
+			<th>Date-added</th>
+			<th>Time-added</th>
+			<th>Usage Period</th>
+			<th>Recyclable?</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">{{ item["item_id"] }}</th>
+			<td>{{ item["item_name"] }}</td>
+			<td>{{ item["item_category"] }}</td>
+			<td>{{ item["item_description"] }}</td>
+			<td>{{ item["price"] }}</td>
+			<td>{{ item["date_added"] }}</td>
+			<td>{{ item["time_added"] }}</td>
+			<td>{{ item["usage_period"] }}</td>
+			<td>{{ item["recyclable"] }} </td>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+
+
+<table class="table table-inverse">
+	<head>
+		<tr>
+			<th>user_id</th>
+			<th>first_name</th>
+			<th>middle_name</th>
+			<th>last_name</th>
+			<th>gender</th>
+			<th>dob</th>
+			<th>email</th>
+			<th>address</th>
+			<th>contact</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">{{ owner["user_id"] }}</th>
+			<td>{{ owner["first_name"] }}</td>
+			<td>{{ owner["middle_name"] }}</td>
+			<td>{{ owner["last_name"] }}</td>
+			<td>{{ owner["gender"] }}</td>
+			<td>{{ owner["dob"] }}</td>
+			<td>{{ owner["email"] }}</td>
+			<td>{{ owner["address"] }}</td>
+			<td>{{ owner["contact"] }} </td>
+		</tr>
+	</tbody>
+</table>
+
+
+<div class=
+</div>
+{% endblock %}
