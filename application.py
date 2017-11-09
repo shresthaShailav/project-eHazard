@@ -1,13 +1,17 @@
+import os
+import re
 from cs50 import SQL
 from flask import Flask, jsonify, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.context import CryptContext
 from tempfile import mkdtemp
+from flask_jsglue import JSGlue
 
 from helpers import *
 
 # configure application
 app = Flask(__name__)
+JSGlue(app)
 app.debug = True
 
 
@@ -328,7 +332,19 @@ def search():
 @app.route('/item', methods=["GET"])
 def item():
     """ returns a json object with all the detailed information about  the item and the user selling it"""
-    return error("Working on it")
+    
+    # ensure that the parameters are present
+    id = str(request.args.get('q'))
+    if not request.args.get('q'):
+        return error("Sorry the item does not exist")
+
+    # here we are assuming that there is only one item with that item id since thats how we designed post
+    item = db.execute('SELECT * FROM repository WHERE item_id = :iId', iId = id)
+    item = item[0]
+    owner = db.execute('SELECT * FROM user_info WHERE user_id = :uid', uid = int (item["user_id"])) 
+    owner = owner[0]
+    return render_template('item_page.html', item = item, owner = owner)
+
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -341,6 +357,53 @@ def contact():
         Will probably have to be implemented with Jinja at the front 
     """
     return render_template("contact.html")
+
+@app.route('/image')
+def storeImage():
+    """ Check Try to store images """
+    return render_template("image.html")
+
+
+@app.route('/hotmap')
+def hotmap():
+    """ Hotmap """
+    if not os.environ.get("API_KEY"):
+        raise RuntimeError("API Key not set ");
+    return render_template('hotmap.html', key=os.environ.get("API_KEY"))
+
+@app.route('/update')
+def update():
+    """ Update """
+
+    places = db.execute('SELECT * FROM places');
+    places = places[:10];
+    
+    return jsonify(places);
+
+
+     # ensure parameters are present
+
+    if not request.args.get("sw"):
+       raise RuntimeError("missing sw")
+    if not request.args.get("ne"):
+       raise RuntimeError("missing ne")
+
+    # ensure parameters are in lat,lng format
+    if not re.search("^-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?$", request.args.get("sw")):
+        raise RuntimeError("invalid sw")
+    if not re.search("^-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?$", request.args.get("ne")):
+      raise RuntimeError("invalid ne")
+
+    
+    # explode southwest corner into two variables
+    (sw_lat, sw_lng) = [float(s) for s in request.args.get("sw").split(",")]
+
+    # explode northeast corner into two variables
+    (ne_lat, ne_lng) = [float(s) for s in request.args.get("ne").split(",")]
+
+    # select all the places within view that are present in the map database
+    # for checking puproses selects the first 10 places from places
+ 
 
 if __name__ == "__main__":
     app.run()
