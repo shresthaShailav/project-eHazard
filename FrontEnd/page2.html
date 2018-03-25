@@ -1,0 +1,26 @@
+<html>
+<script language="javascript" type="text/javascript">
+
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+var v1 = getQueryVariable("id1");
+var v2 = getQueryVariable("id2");
+var v3 = getQueryVariable("id3");
+var v4 = getQueryVariable("id4");
+var v5 = getQueryVariable("id5");
+var v6 = getQueryVariable("id6");
+var v7 = getQueryVariable("id7");
+
+</script>
+
+<body >
+</body>
+</html>

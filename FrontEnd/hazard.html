@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hazard Survay</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="hazard.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+  <h2>Hazard Survay</h2></div>
+  <p style="margin-top: 10px; font-size: 15px;">Believe Us,This is the most important part of your contribution in our effort to build a greenes world. :)</p>
+  <script type="text/javascript">
+  function fn1()
+  {
+	var val1 = document.getElementById("id1").checked;
+	if(val1) val1 = "Glass";
+	var val2 = document.getElementById("id2").checked;
+	if(val2) val2 = "Remote";
+	var val3 = document.getElementById("id3").checked;
+	if(val3) val3 = "Sensors";
+	var val4 = document.getElementById("id4").checked;
+	if(val4) val4 = "Circuit";
+	var val5 = document.getElementById("id5").checked;
+	if(val5) val5 = "Motherboard";
+	var val6 = document.getElementById("id6").checked;
+	if(val6) val6 = "Steel";
+	var val7 = document.getElementById("id7").checked;
+	if(val7) val7 = "Printor";
+	window.location.href="page2.html?id1="+val1+"&id2="+val2+"&id3="+val3+"&id4="+val4+"&id5="+val5+"&id6="+val6+"&id7="+val7;
+  }
+  </script>
+  <form>
+    <div class="form-group">
+      <label for="usr">Does your product contain any of these components--></label>
+      <ol type="(i)">
+        <div class="checkbox"></div><br>
+        <li>Glass Panels/Monitors-->
+          <input type="checkbox" id="id1" name="panel" value="Glass"></li><br>
+         <li>Remote Devices/Old CRT Monitors-->
+          <input type="checkbox" id="id2"  name="panel" value="Remote"></li><br>
+          <li>Sensors/Thermostate/Medical Equipment/Communication Device/Battery-->
+            <input type="checkbox" id="id3"  name="panel" value="Sensors"></li><br>
+            <li>Circuit Board-->
+              <input type="checkbox" id="id4"  name="panel" value="Circuit"></li><br>
+              <li>Motherboard-->
+                <input type="checkbox" id="id5"  name="panel" value="Motherboard"></li><br>
+                <li>Stainless Steel-->
+                  <input type="checkbox"  id="id6"  name="panel" value="Steel"></li><br>
+                  <li>Printor/Toner-->
+                    <input type="checkbox" id="id7"  name="panel" value="Printor"></li><br>
+                    <a href="#" class="myButton" onclick="fn1()">Submit</a>
+                    <a href="#" class="myButton">Skip</a>
+
+
+      </ol>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

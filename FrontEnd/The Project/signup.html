@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+<script typ="text/javascript" src="validation.js" ></script>
+<style type="text/css">
+	body{
+		background-color: black;
+		color: white;
+	}
+	table{
+		margin-top: 60px;
+	}
+	h1{
+		margin-top: 60px;
+	}
+</style>
+</head>
+<body>
+	<center><h1>Registration Form</h1>
+	<form name="form1"  method="post" enctype="multipart/form-data" action="">
+	<table border='0'>
+      <tr>
+        <td><LABEL for="gender">User Profile Type:<sup style="color:#F00">*</sup> </LABEL></td> <td><INPUT type="radio" name="gender" value="Male"> CUSTOMER
+        <INPUT type="radio" name="gender" value="Female" required>CORPORATION TYPE
+      </td>
+    </tr>
+ 		<tr>
+			<td><LABEL for="firstname">First Name:<sup style="color:#F00">*</sup> </LABEL></td>
+         	<td><INPUT type="text" id="firstname" required></td>
+ 		</tr>
+ 		<tr>
+  			<td><LABEL for="lastname">Last Name:<sup style="color:#F00">*</sup> </LABEL></td>
+  			<td><INPUT type="text" id="lastname" required></td>
+ 		</tr>
+ 		<tr>
+ 			<td><LABEL for="user-name">User-Name:<sup style="color: #F00">*</sup></LABEL></td>
+ 			<td><input type="text" name="user-name" required></td>
+ 		</tr>
+ 		<tr>
+   			<td><LABEL for="gender">Gender:<sup style="color:#F00">*</sup> </LABEL></td> <td><INPUT type="radio" name="gender" value="Male"> Male
+   			<INPUT type="radio" name="gender" value="Female" required> Female 
+			</td>
+ 		</tr>
+ 		<tr>
+  			<td><LABEL for="dob">Date of Birth:<sup style="color:#F00">*</sup> </LABEL></td>
+  			<td><input type="date" name="dob">
+  	</td>
+ </tr>
+ <tr>
+      <td>
+        Upload Profile Photo:<sup style="color:#F00">*</sup><br /><input type="file" name="photo">
+      </td>
+    </tr>
+ <tr>
+	<td><LABEL for="address" style="text-align:left;">Address:<sup style="color:#F00">*</sup> </LABEL></td>
+  	<td><textarea id="address"  name="address" rows="4" cols="20" required></textarea></td>
+ </tr>
+ <tr>
+  <td><LABEL for="contctno">Contact Number:<sup style="color:#F00">*</sup> </LABEL></td>
+  <td><INPUT type="text" id="contctno" required></td>
+ </tr>
+ <tr>
+  <td><LABEL for="email">Email:<sup style="color:red;">*</sup> </LABEL></td>
+  <td><INPUT type="text" id="email" required></td>
+ </tr>
+ <tr>
+  <td></td><td><br/><INPUT type="submit" onClick="return validateForm()" value="Submit">
+  <INPUT type="reset" onClick="return confirmreset()"></td>
+ </tr>
+ <tr>
+  <td></td><td style="font-size:12px;text-align:right;"><br/><i style="color:red;font-size:12px;align:right;" >* - Mandatory</i></td>
+ </tr>
+    </table>
+ </FORM></center>
+ </body>
+</html>
